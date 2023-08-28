@@ -1,0 +1,10 @@
+D:\桌面\州巧-3D檢測\ZmapGenerator\ZmapGenerator\bin\Debug\ZmapGenerator.exe.config
+D:\桌面\州巧-3D檢測\ZmapGenerator\ZmapGenerator\bin\Debug\ZmapGenerator.exe
+D:\桌面\州巧-3D檢測\ZmapGenerator\ZmapGenerator\bin\Debug\ZmapGenerator.pdb
+D:\桌面\州巧-3D檢測\ZmapGenerator\ZmapGenerator\obj\Debug\ZmapGenerator.csproj.AssemblyReference.cache
+D:\桌面\州巧-3D檢測\ZmapGenerator\ZmapGenerator\obj\Debug\ZmapGenerator.csproj.SuggestedBindingRedirects.cache
+D:\桌面\州巧-3D檢測\ZmapGenerator\ZmapGenerator\obj\Debug\ZmapGenerator.Properties.Resources.resources
+D:\桌面\州巧-3D檢測\ZmapGenerator\ZmapGenerator\obj\Debug\ZmapGenerator.csproj.GenerateResource.cache
+D:\桌面\州巧-3D檢測\ZmapGenerator\ZmapGenerator\obj\Debug\ZmapGenerator.csproj.CoreCompileInputs.cache
+D:\桌面\州巧-3D檢測\ZmapGenerator\ZmapGenerator\obj\Debug\ZmapGenerator.exe
+D:\桌面\州巧-3D檢測\ZmapGenerator\ZmapGenerator\obj\Debug\ZmapGenerator.pdb
