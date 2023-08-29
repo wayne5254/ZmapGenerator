@@ -212,7 +212,7 @@ namespace ZmapGenerator
             else if (referenceAsPointCloud_)
             {
                 EPointCloudToZMapConverter pctozmap = new EPointCloudToZMapConverter();
-                pctozmap.SetMapSize(3200, 2500);
+                //pctozmap.SetMapSize(3200, 2500);
                 pctozmap.SetMapXYResolution((float)0.1, 0.1f);
 
 
@@ -600,9 +600,10 @@ namespace ZmapGenerator
                 extractor_.Extract(generatedZMap_);//取得3D物件(object)
 
                 List_E3DObject = extractor_.Objects.ToList();//將物件(object)存放至List
-                //E3DPlane Eplane = List_E3DObject[1].Plane;
-                //var SignedDistanceFromOrigin_ = Eplane.SignedDistanceFromOrigin;
-                //var Normal = Eplane.Normal;
+                if (List_E3DObject.Count == 0) return;
+                E3DPlane Eplane = List_E3DObject[0].Plane;
+                var SignedDistanceFromOrigin_ = Eplane.SignedDistanceFromOrigin;
+                var Normal = Eplane.Normal;
 
                 //var value = List_E3DObject[0].AveragePosition;
 
@@ -1361,11 +1362,8 @@ namespace ZmapGenerator
 
                         var perimeter = List_E3DObject[i].RectangleRegion;
                     }
-
                 }
-
             }
-
         }
 
         public Bitmap DrawToBmp<T>(T bw8OrC24, PixelFormat pixelFormat = PixelFormat.Format24bppRgb) where T : EBaseROI
@@ -1558,6 +1556,22 @@ namespace ZmapGenerator
         private void savePointCloudToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {       
+            List<E3DPoint> e3DPoints = new List<E3DPoint>();    
+            for (uint i = 0; i < referencePointCloud_.NumPoints; i++) {
+                e3DPoints.Add(referencePointCloud_.GetPoint(i));
+            }
+            E3DPoint e3DPoint2 = new E3DPoint();
+            int outindex = 0;
+            //referencePointCloud_.DistanceToLine(e3DPoints[0], e3DPoints[referencePointCloud_.NumPoints - 1], out e3DPoint2, out outindex);
+            //EPointCloudStatistics ePointCloudStatistics_ = new EPointCloudStatistics();
+            e3DPoint2 = EPointCloudStatistics.GetPointCloudCentroid(referencePointCloud_);
+            EFloatRange eFloatRange = new EFloatRange();
+            eFloatRange.SetBounds(0, 5);
+            EPointCloudStatistics.GetPointCloudBounds(referencePointCloud_, eFloatRange, eFloatRange, eFloatRange);
         }
     }
 }

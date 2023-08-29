@@ -35,6 +35,7 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.savePointCloudToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.sourceViewerWindow = new System.Windows.Forms.FlowLayoutPanel();
@@ -44,6 +45,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btn_objextract = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.checkBox_Spherefitting = new System.Windows.Forms.CheckBox();
             this.CB_ROI = new System.Windows.Forms.CheckBox();
             this.btn_view = new System.Windows.Forms.Button();
             this.btn_Generator = new System.Windows.Forms.Button();
@@ -125,15 +127,14 @@
             this.checkBoxEROI = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.checkBox_EDL = new System.Windows.Forms.CheckBox();
+            this.checkBox_Sphere = new System.Windows.Forms.CheckBox();
+            this.checkBox_RTP = new System.Windows.Forms.CheckBox();
             this.checkBox_LTP = new System.Windows.Forms.CheckBox();
             this.checkBoxBP = new System.Windows.Forms.CheckBox();
             this.checkBoxAP = new System.Windows.Forms.CheckBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.checkBox_RTP = new System.Windows.Forms.CheckBox();
-            this.checkBox_Sphere = new System.Windows.Forms.CheckBox();
-            this.checkBox_EDL = new System.Windows.Forms.CheckBox();
-            this.checkBox_Spherefitting = new System.Windows.Forms.CheckBox();
-            this.savePointCloudToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.button1 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_3D)).BeginInit();
@@ -173,35 +174,42 @@
             // loadToolStripMenuItem
             // 
             this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
-            this.loadToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.loadToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.loadToolStripMenuItem.Text = "Load PointCloud";
             this.loadToolStripMenuItem.Click += new System.EventHandler(this.loadToolStripMenuItem_Click);
             // 
             // LoadImageToolStripMenuItem
             // 
             this.LoadImageToolStripMenuItem.Name = "LoadImageToolStripMenuItem";
-            this.LoadImageToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.LoadImageToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.LoadImageToolStripMenuItem.Text = "Load Image";
             this.LoadImageToolStripMenuItem.Click += new System.EventHandler(this.LoadImageToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(166, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // saveImageToolStripMenuItem
             // 
             this.saveImageToolStripMenuItem.Name = "saveImageToolStripMenuItem";
-            this.saveImageToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.saveImageToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.saveImageToolStripMenuItem.Text = "Save Image";
             this.saveImageToolStripMenuItem.Click += new System.EventHandler(this.saveImageToolStripMenuItem_Click);
+            // 
+            // savePointCloudToolStripMenuItem
+            // 
+            this.savePointCloudToolStripMenuItem.Name = "savePointCloudToolStripMenuItem";
+            this.savePointCloudToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.savePointCloudToolStripMenuItem.Text = "Save PointCloud";
+            this.savePointCloudToolStripMenuItem.Click += new System.EventHandler(this.savePointCloudToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -286,6 +294,7 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.button1);
             this.groupBox3.Controls.Add(this.checkBox_Spherefitting);
             this.groupBox3.Controls.Add(this.CB_ROI);
             this.groupBox3.Controls.Add(this.btn_view);
@@ -350,6 +359,17 @@
             this.groupBox3.TabIndex = 4;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "3D extraction parameters";
+            // 
+            // checkBox_Spherefitting
+            // 
+            this.checkBox_Spherefitting.AutoSize = true;
+            this.checkBox_Spherefitting.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.checkBox_Spherefitting.Location = new System.Drawing.Point(61, 331);
+            this.checkBox_Spherefitting.Name = "checkBox_Spherefitting";
+            this.checkBox_Spherefitting.Size = new System.Drawing.Size(87, 16);
+            this.checkBox_Spherefitting.TabIndex = 66;
+            this.checkBox_Spherefitting.Text = "Sphere fitting";
+            this.checkBox_Spherefitting.UseVisualStyleBackColor = true;
             // 
             // CB_ROI
             // 
@@ -1040,6 +1060,39 @@
             this.groupBox5.TabIndex = 9;
             this.groupBox5.TabStop = false;
             // 
+            // checkBox_EDL
+            // 
+            this.checkBox_EDL.AutoSize = true;
+            this.checkBox_EDL.Location = new System.Drawing.Point(189, 36);
+            this.checkBox_EDL.Name = "checkBox_EDL";
+            this.checkBox_EDL.Size = new System.Drawing.Size(81, 16);
+            this.checkBox_EDL.TabIndex = 13;
+            this.checkBox_EDL.Text = "Enable EDL";
+            this.checkBox_EDL.UseVisualStyleBackColor = true;
+            this.checkBox_EDL.CheckedChanged += new System.EventHandler(this.CheckBox_CheckedChange);
+            // 
+            // checkBox_Sphere
+            // 
+            this.checkBox_Sphere.AutoSize = true;
+            this.checkBox_Sphere.Location = new System.Drawing.Point(127, 36);
+            this.checkBox_Sphere.Name = "checkBox_Sphere";
+            this.checkBox_Sphere.Size = new System.Drawing.Size(56, 16);
+            this.checkBox_Sphere.TabIndex = 12;
+            this.checkBox_Sphere.Text = "Sphere";
+            this.checkBox_Sphere.UseVisualStyleBackColor = true;
+            this.checkBox_Sphere.CheckedChanged += new System.EventHandler(this.CheckBox_CheckedChange);
+            // 
+            // checkBox_RTP
+            // 
+            this.checkBox_RTP.AutoSize = true;
+            this.checkBox_RTP.Location = new System.Drawing.Point(6, 36);
+            this.checkBox_RTP.Name = "checkBox_RTP";
+            this.checkBox_RTP.Size = new System.Drawing.Size(115, 16);
+            this.checkBox_RTP.TabIndex = 11;
+            this.checkBox_RTP.Text = "Reference Top Pos.";
+            this.checkBox_RTP.UseVisualStyleBackColor = true;
+            this.checkBox_RTP.CheckedChanged += new System.EventHandler(this.CheckBox_CheckedChange);
+            // 
             // checkBox_LTP
             // 
             this.checkBox_LTP.AutoSize = true;
@@ -1085,56 +1138,16 @@
             this.groupBox6.TabIndex = 10;
             this.groupBox6.TabStop = false;
             // 
-            // checkBox_RTP
+            // button1
             // 
-            this.checkBox_RTP.AutoSize = true;
-            this.checkBox_RTP.Location = new System.Drawing.Point(6, 36);
-            this.checkBox_RTP.Name = "checkBox_RTP";
-            this.checkBox_RTP.Size = new System.Drawing.Size(115, 16);
-            this.checkBox_RTP.TabIndex = 11;
-            this.checkBox_RTP.Text = "Reference Top Pos.";
-            this.checkBox_RTP.UseVisualStyleBackColor = true;
-            this.checkBox_RTP.CheckedChanged += new System.EventHandler(this.CheckBox_CheckedChange);
-            // 
-            // checkBox_Sphere
-            // 
-            this.checkBox_Sphere.AutoSize = true;
-            this.checkBox_Sphere.Location = new System.Drawing.Point(127, 36);
-            this.checkBox_Sphere.Name = "checkBox_Sphere";
-            this.checkBox_Sphere.Size = new System.Drawing.Size(56, 16);
-            this.checkBox_Sphere.TabIndex = 12;
-            this.checkBox_Sphere.Text = "Sphere";
-            this.checkBox_Sphere.UseVisualStyleBackColor = true;
-            this.checkBox_Sphere.CheckedChanged += new System.EventHandler(this.CheckBox_CheckedChange);
-            // 
-            // checkBox_EDL
-            // 
-            this.checkBox_EDL.AutoSize = true;
-            this.checkBox_EDL.Location = new System.Drawing.Point(189, 36);
-            this.checkBox_EDL.Name = "checkBox_EDL";
-            this.checkBox_EDL.Size = new System.Drawing.Size(81, 16);
-            this.checkBox_EDL.TabIndex = 13;
-            this.checkBox_EDL.Text = "Enable EDL";
-            this.checkBox_EDL.UseVisualStyleBackColor = true;
-            this.checkBox_EDL.CheckedChanged += new System.EventHandler(this.CheckBox_CheckedChange);
-            // 
-            // checkBox_Spherefitting
-            // 
-            this.checkBox_Spherefitting.AutoSize = true;
-            this.checkBox_Spherefitting.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.checkBox_Spherefitting.Location = new System.Drawing.Point(61, 331);
-            this.checkBox_Spherefitting.Name = "checkBox_Spherefitting";
-            this.checkBox_Spherefitting.Size = new System.Drawing.Size(87, 16);
-            this.checkBox_Spherefitting.TabIndex = 66;
-            this.checkBox_Spherefitting.Text = "Sphere fitting";
-            this.checkBox_Spherefitting.UseVisualStyleBackColor = true;
-            // 
-            // savePointCloudToolStripMenuItem
-            // 
-            this.savePointCloudToolStripMenuItem.Name = "savePointCloudToolStripMenuItem";
-            this.savePointCloudToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.savePointCloudToolStripMenuItem.Text = "Save PointCloud";
-            this.savePointCloudToolStripMenuItem.Click += new System.EventHandler(this.savePointCloudToolStripMenuItem_Click);
+            this.button1.AllowDrop = true;
+            this.button1.Location = new System.Drawing.Point(8, 408);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(42, 21);
+            this.button1.TabIndex = 67;
+            this.button1.Text = "test";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // MainForm
             // 
@@ -1276,6 +1289,7 @@
         private System.Windows.Forms.CheckBox checkBox_EDL;
         private System.Windows.Forms.CheckBox checkBox_Spherefitting;
         private System.Windows.Forms.ToolStripMenuItem savePointCloudToolStripMenuItem;
+        private System.Windows.Forms.Button button1;
     }
 }
 
