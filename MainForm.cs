@@ -45,6 +45,7 @@ namespace ZmapGenerator
         private E3DObjectExtractor extractor_ = null;
         // ZMap
         private EZMap generatedZMap_ = null;
+        private EZMap16 generatedZMap_16 = null;
         private EZMap16 EZMap16_ = null;
         private EZMap ZMap_3D = null;
 
@@ -248,20 +249,22 @@ namespace ZmapGenerator
             bool isZMap8 = false;
             bool isZMap16 = true;
 
-            if (isZMap8)
-                generatedZMap_ = new EZMap8();
-            else if (isZMap16)
-                generatedZMap_ = new EZMap16();
-            
+            //if (isZMap8)
+            //    generatedZMap_ = new EZMap8();
+            //else if (isZMap16)
+            //    generatedZMap_ = new EZMap16();
+
+            generatedZMap_ = new EZMap16();
+
             image_ = new EImageBW8();
             image_C24 = new EImageC24();
 
             if (isZMap8)
             {
-                generatedZMap_ = eZMap16;
-                image_.SetSize(generatedZMap_.Width, generatedZMap_.Height);
-                using (EImageBW8 tmp = ((EZMap8)generatedZMap_).AsEImage())
-                    EasyImage.Copy(tmp, image_);
+                //generatedZMap_ = eZMap16;
+                //image_.SetSize(generatedZMap_.Width, generatedZMap_.Height);
+                //using (EImageBW8 tmp = ((EZMap8)generatedZMap_).AsEImage())
+                //    EasyImage.Copy(tmp, image_);
             }
             else if (isZMap16)
             {
@@ -428,21 +431,22 @@ namespace ZmapGenerator
                 bool isZMap8 = false;
                 bool isZMap16 = true;
 
-                if (isZMap8)
-                    generatedZMap_ = new EZMap8();
-                else if (isZMap16)
-                    generatedZMap_ = new EZMap16();
+                //if (isZMap8)
+                //    generatedZMap_ = new EZMap8();
+                //else if (isZMap16)
+                //    generatedZMap_ = new EZMap16();
 
+                generatedZMap_ = new EZMap16();
 
                 image_ = new EImageBW8();
                 image_C24 = new EImageC24();
 
                 if (isZMap8)
                 {
-                    generatedZMap_ = eZMap16;
-                    image_.SetSize(generatedZMap_.Width, generatedZMap_.Height);
-                    using (EImageBW8 tmp = ((EZMap8)generatedZMap_).AsEImage())
-                        EasyImage.Copy(tmp, image_);
+                    //generatedZMap_ = eZMap16;
+                    //image_.SetSize(generatedZMap_.Width, generatedZMap_.Height);
+                    //using (EImageBW8 tmp = ((EZMap8)generatedZMap_).AsEImage())
+                    //    EasyImage.Copy(tmp, image_);
                 }
                 else if (isZMap16)
                 {
@@ -856,6 +860,20 @@ namespace ZmapGenerator
                 image_.SetSize(generatedZMap_.Width, generatedZMap_.Height);
                 using (EImageBW8 tmp = ((EZMap8)generatedZMap_).AsEImage())
                     EasyImage.Copy(tmp, image_);
+
+                //EZMap16 zmap16 = new EZMap16();
+                //zmap16.LoadImage(strtemp);
+
+                //if (generatedZMap_ != null)
+                //{
+                //    generatedZMap_.Dispose();
+                //    generatedZMap_ = null;
+                //}
+                //generatedZMap_ = zmap16;
+                //image_.SetSize(generatedZMap_.Width, generatedZMap_.Height);
+                //using (EImageBW16 tmp16  = new EImageBW16(generatedZMap_.AsEImage())) {
+                //    EasyImage.Copy(tmp16, image_);
+                //}
 
             }
             catch (EException exc)
@@ -1442,9 +1460,14 @@ namespace ZmapGenerator
 
 
         }
-
+        /// <summary>
+        /// 透過ERegion切割，所以是用圖片(zmap)切割後再轉PCD
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_view_Click(object sender, EventArgs e)
-        {
+        {   
+
             if (List_E3DObject.Count <= 0)
             {
                 return;
@@ -1465,14 +1488,14 @@ namespace ZmapGenerator
             }
             
 
-            image_.SetSize(zmapCropped.Width, zmapCropped.Height);
-            using (EImageBW16 tmp = ((EZMap16)zmapCropped).AsEImage())
-            {
-                EasyImage.Convert(tmp, image_);
-                //EasyImage.Convert(image_, image_C24);
-            }
-            Bitmap drawbitmap = DrawToBmp(image_);
-            drawbitmap.Save("savecropped.png");
+            //image_.SetSize(zmapCropped.Width, zmapCropped.Height);
+            //using (EImageBW16 tmp = ((EZMap16)zmapCropped).AsEImage())
+            //{
+            //    EasyImage.Convert(tmp, image_);
+            //    //EasyImage.Convert(image_, image_C24);
+            //}
+            //Bitmap drawbitmap = DrawToBmp(image_);
+            //drawbitmap.Save("savecropped.png");
 
             EPointCloud SaveePointCloud = new EPointCloud();
             EZMapToPointCloudConverter zmaptopc = new EZMapToPointCloudConverter();
@@ -1559,19 +1582,28 @@ namespace ZmapGenerator
         }
 
         private void button1_Click(object sender, EventArgs e)
-        {       
-            List<E3DPoint> e3DPoints = new List<E3DPoint>();    
-            for (uint i = 0; i < referencePointCloud_.NumPoints; i++) {
-                e3DPoints.Add(referencePointCloud_.GetPoint(i));
-            }
-            E3DPoint e3DPoint2 = new E3DPoint();
-            int outindex = 0;
-            //referencePointCloud_.DistanceToLine(e3DPoints[0], e3DPoints[referencePointCloud_.NumPoints - 1], out e3DPoint2, out outindex);
-            //EPointCloudStatistics ePointCloudStatistics_ = new EPointCloudStatistics();
-            e3DPoint2 = EPointCloudStatistics.GetPointCloudCentroid(referencePointCloud_);
-            EFloatRange eFloatRange = new EFloatRange();
-            eFloatRange.SetBounds(0, 5);
-            EPointCloudStatistics.GetPointCloudBounds(referencePointCloud_, eFloatRange, eFloatRange, eFloatRange);
+        {
+            //MessageBox.Show("●");
+
+            var num = generatedZMap_.Width;
+            //EImageBW16 eImageBW16 =  new EImageBW16(generatedZMap_.AsEImage());
+            //Bitmap drawbitmap = DrawToBmp(eImageBW16);
+            //drawbitmap.Save("bpm.png");
+
+
+            //List<E3DPoint> e3DPoints = new List<E3DPoint>();    
+            //for (uint i = 0; i < referencePointCloud_.NumPoints; i++) {
+            //    e3DPoints.Add(referencePointCloud_.GetPoint(i));
+            //}
+            //E3DPoint e3DPoint2 = new E3DPoint();
+            //int outindex = 0;
+            ////referencePointCloud_.DistanceToLine(e3DPoints[0], e3DPoints[referencePointCloud_.NumPoints - 1], out e3DPoint2, out outindex);
+            ////EPointCloudStatistics ePointCloudStatistics_ = new EPointCloudStatistics();
+            //e3DPoint2 = EPointCloudStatistics.GetPointCloudCentroid(referencePointCloud_);
+
+            //EFloatRange eFloatRange = new EFloatRange();
+            //eFloatRange.SetBounds(0, 5);
+            //EPointCloudStatistics.GetPointCloudBounds(referencePointCloud_, eFloatRange, eFloatRange, eFloatRange);
         }
     }
 }
